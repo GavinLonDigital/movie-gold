@@ -48,7 +48,7 @@ const Header = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="/" className="menu-link" style={{ "color": 'gold'}}><FontAwesomeIcon icon={faVideoSlash}/>Movie Gold</Navbar.Brand>
+        <Navbar.Brand href="/" className="menu-link" style={{ "color": 'gold'}}><FontAwesomeIcon icon={faVideoSlash}/>Gold</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
