@@ -2,10 +2,17 @@
         width:100vw;
         background-color: black;
     }
-  
+  .movie-buttons-container{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    width:300px;
+  }
   .movie-card-container{
     height: 550px;
     background-color: black;
+
   }
   .movie-card{
     background-repeat: no-repeat;
@@ -22,34 +29,56 @@
     display: flex;
     justify-content: space-evenly;
     width: 100%;
+
   }
   .movie-title{
-    padding-top: 150px;
     color:white;
+    display: flex;
+    align-items: center;
+
   }
-  .play-trailer{
+  .play-button-icon-container{
+    padding:0px;
+    margin:0px;
+    width: 150px;
+
+  }
+  .play-button-icon{
+    padding:0px;
+    margin:0px;
     color:gold;
-    padding-top: 150px;
     font-size: 3rem;
     transition: 0.3s;
     cursor: pointer;
   }
-  .play-trailer:hover{
+
+  .play-button-icon:hover{
     font-size: 4rem;
     color:white;
   }
-  
+
+  .movie-watch-list-add-button-container{
+    padding:0px;
+    margin:0px;
+
+  }
+  .movie-watch-list-add-button{
+    font-size: 1rem;
+    padding:0px;
+    margin:0px;
+  }
+
+  .movie-review-button-container{
+    padding:0px;
+    margin:0px;
+  }
+
   @media only screen and (max-width: 800px) {
     /* For mobile phones: */
     .movie-detail{
       flex-direction: column;
       align-items: center;
-      top:100px;
+      top:20px;
     }
-    .play-trailer, .movie-title{
-      padding-top: 0;
-    
-    }
-
 
   }

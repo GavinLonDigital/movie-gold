@@ -1,4 +1,4 @@
-import React,{useRef,useEffect} from 'react'
+import React,{useRef} from 'react'
 import './Header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVideoSlash } from '@fortawesome/free-solid-svg-icons'
@@ -7,17 +7,23 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import SearchResults from '../searchResults/SearchResults';
-import { useNavigate,NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
+import useAuth from '../../hooks/useAuth';
 
 //https://react-bootstrap.github.io/components/navbar/
 
 const Header = () => {
 
+  const {auth, setAuth} = useAuth();
+
   const searchText = useRef();
 
   const navigate = useNavigate();
+
+  const handleNav = (path) =>{
+    navigate(path);
+
+  }
 
   const performSearch = () =>{
     const st = searchText.current;
@@ -26,24 +32,12 @@ const Header = () => {
     
   }
 
-  useEffect(() => {
-    const keyDownHandler = event => {
-      console.log('User pressed: ', event.key);
 
-      if (event.key === 'Enter') {
-        event.preventDefault();
+  function logOut(){
+    setAuth(null);
+    handleNav("/");
 
-        // 👇️ your logic here
-        performSearch();
-      }
-    };
-
-    document.addEventListener('keydown', keyDownHandler);
-
-    return () => {
-      document.removeEventListener('keydown', keyDownHandler);
-    };
-  }, []);
+  }
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
@@ -54,25 +48,13 @@ const Header = () => {
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: '100px'}}
-            navbarScroll
-          >
+            navbarScroll>
             <NavLink className="nav-link" to = "/">Home</NavLink>
-            {/* <Nav.Link href="#action2">Link</Nav.Link>
-            <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="#" disabled>
-              Link
-            </Nav.Link> */}
+            <NavLink className="nav-link" to = "/watchList">Watch List</NavLink>
           </Nav>
-          <Form className="d-flex">
+          {auth?.user?
+          <>
+          <Form className="d-flex  mb-2 mt-2">
             <Form.Control
               type="search"
               placeholder="Search"
@@ -80,8 +62,18 @@ const Header = () => {
               aria-label="Search"
               ref = {searchText}
             />
-            <Button variant="outline-light" onClick={performSearch}>Search</Button>
+            <Button variant="outline-info" onClick={performSearch} className="me-2" >Search</Button>
           </Form>
+
+            <Button variant="info" className="mb-2 mt-2" onClick ={logOut}>Logout</Button>
+
+          </>
+          :
+          <>
+               <Button variant="outline-info" onClick={() => handleNav("/Login")} className="me-2">Login</Button>
+               <Button variant="outline-info" onClick={() => handleNav("/Register")}>Register</Button>
+          </>
+          }
         </Navbar.Collapse>
       </Container>
     </Navbar>

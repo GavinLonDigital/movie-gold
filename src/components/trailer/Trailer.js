@@ -16,7 +16,6 @@ const Trailer = () => {
 
         setKey(response.data.results[0].key);
 
-
     }
 
     useEffect(()=>{
@@ -29,7 +28,6 @@ const Trailer = () => {
         {(key!=null)?<ReactPlayer controls = "true" playing={true} url = {`https://www.youtube.com/watch?v=${key}`}
         width='100%' height='100%'
         />  :null}
-
     </div>
   )
 }
@@ -37,20 +35,3 @@ const Trailer = () => {
 export default Trailer
 
 
-// const Trailer = () => {
-    
-//     const [movieDetails, setMovieDetails] = userState([]);
-    
-//     let params = useParams();
-//     let movie_id = params.movieId;
-//     alert(movie_id);
-
-
-//   return (
-//     <div className="trailer">
-//         {movie_id}
-//     </div>
-//   )
-// }
-
-// export default Trailer

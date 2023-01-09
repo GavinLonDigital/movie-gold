@@ -1,10 +1,9 @@
 import Hero from '../hero/Hero'
 
-const Home = ({nowPlayingMovies, getImagePath}) => {
+const Home = ({watchListItems,addToWatchList,nowPlayingMovies, getImagePath}) => {
+
   return (
-    <>
-      <Hero nowPlayingMovies ={nowPlayingMovies} getImagePath={getImagePath} />
-    </>
+      <Hero watchListItems = {watchListItems} addToWatchList = {addToWatchList} nowPlayingMovies ={nowPlayingMovies} getImagePath={getImagePath} />
   )
 }
 
